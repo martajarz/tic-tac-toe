@@ -1,0 +1,67 @@
+$tile-border: 12px solid #DBCAE8;;
+
+body {
+  background-color: #F1EBFF;
+  font-family: 'Jua', sans-serif;
+  font-weight: 700;
+  font-size: 8vh;
+  color: #7B7182;
+  position: relative;
+}
+
+.board {
+  display: grid;
+  grid-template-columns: 212px 200px 212px;
+  grid-template-rows: 212px 200px 212px;
+  margin-right: calc(0.5 * (100% - 600px));
+  margin-left: calc(0.5 * (100% - 600px));
+}
+
+.tile {
+  align-self: stretch;
+  text-align: center;
+  line-height: 180px;;
+
+  &:nth-of-type(1) {
+    border-right: $tile-border;
+    border-bottom: $tile-border;
+  }
+  &:nth-of-type(2) {
+    border-bottom: $tile-border;
+  }
+  &:nth-of-type(3) {
+    border-left: $tile-border;
+    border-bottom: $tile-border;
+  }
+  &:nth-of-type(4) {
+    border-right: $tile-border;
+  }
+  &:nth-of-type(6) {
+    border-left: $tile-border;
+  }
+  &:nth-of-type(7) {
+    border-right: $tile-border;
+    border-top: $tile-border;
+  }
+  &:nth-of-type(8) {
+    border-top: $tile-border;
+  }
+  &:nth-of-type(9) {
+    border-left: $tile-border;
+    border-top: $tile-border;
+  }
+}
+
+.winner {
+  color: #E86DDF;
+  grid-column-start: 1;
+  grid-column-end: 4;
+  font-size: 0.5em;
+  text-align: center;
+  padding-top: 50px;
+}
+
+h1 {
+  text-align: center;
+  font-size: 1em; 
+}

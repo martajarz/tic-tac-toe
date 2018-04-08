@@ -1,0 +1,19 @@
+body {
+  background-color: #F1EBFF;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 700;
+  font-size: 5vw;
+  color: #7B7182;
+  position: relative; }
+
+.board {
+  width: 40vw;
+  height: 50vw;
+  border-collapse: collapse;
+  position: absolute;
+  left: 30vw; }
+
+.tile {
+  width: 33.3%;
+  height: 33.3%; }
+
