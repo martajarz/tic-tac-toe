@@ -21,7 +21,8 @@ import style from "./_scss/main.scss";
 
     scope.contents = {
       user: 'o',
-      computer: 'x'
+      computer: 'x',
+      empty: ''
     };
 
     scope.winningSettings = [
@@ -36,30 +37,70 @@ import style from "./_scss/main.scss";
     ]
 
     scope.winner;
+    scope.disabled = false;
 
-    scope.userMove = function(id) {
-      for (let i = 0; i < scope.tiles.length; i++) {
-        if (scope.tiles[i].id === id) {
-          scope.tiles[i].content = 'o';
-        }
+    scope.userMove = function(index) {
+      if (scope.tiles[index].content === scope.contents.empty) {
+        scope.tiles[index].content = scope.contents.user;
+      } else {
+        return;
       }
-      checkifWin(scope.contents.user);
-      setTimeout(computerMove(), 2000);
+      if (checkIfWin(scope.contents.user)) {
+        return;
+      } else {
+        computerMove();
+      }
     }
 
-    let checkifWin = function(value) {
+    let checkRow = function(value, move) {
+      let value1, value2, value3;
+      for (let i = 0; i < scope.winningSettings.length; i++) {
+        value1 = scope.tiles[scope.winningSettings[i][0]].content;
+        value2 = scope.tiles[scope.winningSettings[i][1]].content;
+        value3 = scope.tiles[scope.winningSettings[i][2]].content;
+        if (value1 === value && value2 === value && value3 === scope.contents.empty) {
+          scope.tiles[scope.winningSettings[i][2]].content = move;
+          return true;
+        } else if (value1 === value && value2 === scope.contents.empty && value3 === value) {
+          scope.tiles[scope.winningSettings[i][1]].content = move;
+          return true;
+        } else if (value1 === scope.contents.empty && value2 === value && value3 === value) {
+          scope.tiles[scope.winningSettings[i][0]].content = move;
+          return true;
+        }
+      }
+    }
+
+    let checkIfWin = function(value) {
       for (let i = 0; i < scope.winningSettings.length; i++) {
         if (scope.tiles[scope.winningSettings[i][0]].content === value && scope.tiles[scope.winningSettings[i][1]].content === value && scope.tiles[scope.winningSettings[i][2]].content === value) {
-          scope.winner = 'User';
-          console.log(scope.winner);
-          return;
+          scope.winner = value;
+          scope.disabled = true;
+          return true;
         }
       }
     }
 
     let computerMove = function() {
-      console.log('kom');
+      // win = check winning positions, if there is a position with two x and third empty - put x
+      if (checkRow(scope.contents.computer, scope.contents.computer));
+      // block = check winning positions, if there is a position with two o and third empty - put x
+      else if (checkRow(scope.contents.user, scope.contents.computer));
+      // else find empty tile
+      else { 
+        for (let i = 0; i < scope.tiles.length; i++) {
+          if (scope.tiles[i].content === scope.contents.empty) {
+            scope.tiles[i].content = scope.contents.computer;
+            return;
+          }
+        }
+      }
+      checkIfWin(scope.contents.computer);
+
+
     };
+
+    // play again button
     
   });
 })();

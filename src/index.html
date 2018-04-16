@@ -11,7 +11,7 @@
 <body ng-app="ticTacToe">
   <h1>Tic Tac Toe</h1>
   <div ng-controller="GameController as gameCtrl" class="board">
-    <div ng-repeat="tile in gameCtrl.tiles" ng-click="gameCtrl.userMove(tile.id)" class="tile"><span>{{tile.content}}</span></div>
+    <div ng-repeat="tile in gameCtrl.tiles track by $index" ng-click="gameCtrl.disabled || gameCtrl.userMove($index)" class="tile"><span>{{tile.content}}</span></div>
     <div ng-if="gameCtrl.winner" class="winner">{{gameCtrl.winner}} wins!</div>
   </div>
 </body>
