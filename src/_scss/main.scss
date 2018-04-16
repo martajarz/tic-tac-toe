@@ -53,15 +53,20 @@ body {
 }
 
 .winner {
-  color: #E86DDF;
+  // color: #E86DDF;
+  color: #7B7182;
+  font-weight: 700;
   grid-column-start: 1;
   grid-column-end: 4;
-  font-size: 0.5em;
+  font-size: 0.8em;
   text-align: center;
   padding-top: 50px;
 }
 
 h1 {
   text-align: center;
-  font-size: 1em; 
+  font-size: 1em;
+  margin: 30px 0;
 }
+
+// breakpoints
